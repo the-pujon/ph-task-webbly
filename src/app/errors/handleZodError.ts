@@ -3,8 +3,12 @@ import { TErrorSources, TGenericErrorResponse } from '../interface/error';
 
 const handleZodError = (err: ZodError): TGenericErrorResponse => {
   const errorSources: TErrorSources = err.issues.map((issue: ZodIssue) => {
+    const path = issue.path.length
+      ? (issue.path[issue.path.length - 1] as string | number)
+      : "";
+
     return {
-      path: issue?.path[issue.path.length - 1],
+      path,
       message: issue.message,
     };
   });

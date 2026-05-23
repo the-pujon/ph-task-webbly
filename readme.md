@@ -101,6 +101,35 @@ STORE_PASSWD=your_store_password
 IS_LIVE=false
 ```
 
+### Stripe Billing
+For Stripe-backed subscriptions, add these variables as well:
+
+```env
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+STRIPE_CURRENCY=usd
+STRIPE_SUCCESS_URL=http://localhost:3000/subscription/success?session_id={CHECKOUT_SESSION_ID}
+STRIPE_CANCEL_URL=http://localhost:3000/subscription/cancel?session_id={CHECKOUT_SESSION_ID}
+```
+
+Where to get them:
+- `STRIPE_SECRET_KEY` from the Stripe Dashboard > Developers > API keys.
+- `STRIPE_WEBHOOK_SECRET` from the Stripe Dashboard > Developers > Webhooks after you create a webhook endpoint.
+- `STRIPE_SUCCESS_URL` and `STRIPE_CANCEL_URL` should point to your frontend pages or a local status page.
+
+### Monitoring Stack
+Docker Compose now includes Prometheus, Loki, Promtail, and Grafana.
+
+- Prometheus scrapes `http://app:4000/metrics`.
+- Loki stores application logs.
+- Promtail tails Docker container logs and pushes them to Loki.
+- Grafana is pre-provisioned with Prometheus and Loki datasources.
+
+Open:
+- Prometheus: `http://localhost:9090`
+- Grafana: `http://localhost:3001` (default login: `admin` / `admin123`)
+- Loki: `http://localhost:3100`
+
 ## 🔧 Core Features
 
 ### 1. Authentication System

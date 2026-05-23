@@ -1,0 +1,128 @@
+{
+    "info": {
+        "name": "Subscription & Billing API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth - Signup",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/auth/signup",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"user@example.com\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"Test@123456\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Auth - Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/auth/login",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"Test@123456\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Plans - Create",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/subscriptions/plans",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Starter\",\n  \"price\": 10,\n  \"durationDays\": 30\n}"
+                }
+            }
+        },
+        {
+            "name": "Plans - List",
+            "request": {
+                "method": "GET",
+                "url": "{{baseUrl}}/api/v1/subscriptions/plans"
+            }
+        },
+        {
+            "name": "Subscription - Purchase",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/subscriptions/purchase",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"planId\": \"{{planId}}\",\n  \"autoRenew\": true\n}"
+                }
+            }
+        },
+        {
+            "name": "Subscription - Cancel",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/subscriptions/cancel",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"subscriptionId\": \"{{subscriptionId}}\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Subscription - Me",
+            "request": {
+                "method": "GET",
+                "url": "{{baseUrl}}/api/v1/subscriptions/me"
+            }
+        },
+        {
+            "name": "Webhook - Payment Update",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-webhook-signature",
+                        "value": "{{webhookSignature}}"
+                    }
+                ],
+                "url": "{{baseUrl}}/api/v1/subscriptions/webhook",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"eventType\": \"payment_success\",\n  \"subscriptionId\": \"{{subscriptionId}}\",\n  \"paidThrough\": \"2030-01-01T00:00:00.000Z\"\n}"
+                }
+            }
+        }
+    ]
+}

@@ -8,5 +8,6 @@ node_modules
 .env.save
 coverage
 scripts
+dist
 
 

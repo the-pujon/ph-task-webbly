@@ -32,7 +32,7 @@ const resendVerifyEmailCode = z.object({
   }),
 });
 
-export const  AuthValidation = {
+export const AuthValidation = {
   userValidationZodSchema,
   loginValidationSchema,
   resendVerifyEmailCode,

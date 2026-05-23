@@ -1,13 +1,12 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from "dotenv";
+import path from "path";
 
-const envPath = path.join(process.cwd(), '.env');
+const envPath = path.join(process.cwd(), ".env");
 // console.log('🧪 Loading .env from:', envPath);
 
 dotenv.config({ path: envPath });
 
 // console.log('✅ JWT_ACCESS_SECRET loaded inside config.ts:', process.env.JWT_ACCESS_SECRET);
-
 
 export default {
   port: process.env.PORT,
@@ -23,12 +22,12 @@ export default {
   reset_pass_ui_link: process.env.RESET_PASS_UI_LINK,
 
   cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-	cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
-	cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
+  cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
 
-  store_id:process.env.STORE_ID,
-  store_passwd:process.env.STORE_PASSWD,
-  is_live:process.env.IS_LIVE,
+  store_id: process.env.STORE_ID,
+  store_passwd: process.env.STORE_PASSWD,
+  is_live: process.env.IS_LIVE,
 
   redis_ttl: process.env.REDIS_TTL,
   redis_cache_key_prefix: process.env.REDIS_CACHE_KEY_PREFIX,
@@ -43,4 +42,11 @@ export default {
   email_user: process.env.EMAIL_USER,
   email_pass: process.env.EMAIL_PASS,
 
+  stripe_secret_key: process.env.STRIPE_SECRET_KEY,
+  stripe_webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
+  stripe_currency: process.env.STRIPE_CURRENCY || 'usd',
+  stripe_success_url: process.env.STRIPE_SUCCESS_URL,
+  stripe_cancel_url: process.env.STRIPE_CANCEL_URL,
+
+  webhook_secret: process.env.WEBHOOK_SECRET,
 };
